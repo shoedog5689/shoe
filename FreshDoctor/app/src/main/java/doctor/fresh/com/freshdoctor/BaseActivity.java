@@ -1,6 +1,7 @@
 package doctor.fresh.com.freshdoctor;
 
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 
 /**
@@ -20,6 +21,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     //添加fragment
     protected void addFragment(BaseFragment fragment) {
         if (fragment != null) {
+            Log.d(TAG, "addFragment()");
             getFragmentManager().beginTransaction()
                     .replace(getFragmentContentId(), fragment, fragment.getClass().getSimpleName())
                     .addToBackStack(fragment.getClass().getSimpleName())
@@ -29,8 +31,9 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     //移除fragment
     protected void removeFragment() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
-            getSupportFragmentManager().popBackStack();
+        Log.d(TAG, "removeFragment(), getFragmentManager().getBackStackEntryCount() = " + getFragmentManager().getBackStackEntryCount());
+        if (getFragmentManager().getBackStackEntryCount() > 1) {
+            getFragmentManager().popBackStack();
         } else {
             finish();
         }

@@ -13,6 +13,7 @@
         android:layout_height="wrap_content">
 
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -30,6 +31,8 @@
         <FrameLayout
             android:id="@+id/main_fragment"
             android:layout_width="match_parent"
+            android:layout_below="@+id/appBar"
+            android:layout_above="@+id/nav_bottom"
             android:layout_height="match_parent" />
 
         <android.support.design.widget.BottomNavigationView
@@ -37,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
-            app:itemIconTint="#767676"
+            app:itemIconTint="#de2323"
             app:itemTextColor="#767676"
             app:menu="@menu/nav_bottom_item" >
 

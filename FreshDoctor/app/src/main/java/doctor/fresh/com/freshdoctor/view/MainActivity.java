@@ -2,6 +2,8 @@ package doctor.fresh.com.freshdoctor.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -22,10 +24,11 @@ public class MainActivity extends BaseActivity
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private Toolbar toolbar;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
+    private BottomNavigationView bottomNavigationView;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,9 @@ public class MainActivity extends BaseActivity
         if (null != getIntent()) {
             handleIntent(getIntent());
         }
+
+        initMainView();
+
         //避免重复添加Fragment
         Log.d(TAG, "getBackStackEntryCount():" + getFragmentManager().getBackStackEntryCount());
         if (getFragmentManager().getBackStackEntryCount() <= 0 ) {
@@ -43,8 +49,6 @@ public class MainActivity extends BaseActivity
                 addFragment(firstFragment);
             }
         }
-
-        initMainView();
     }
 
     //获取Intent
@@ -57,13 +61,33 @@ public class MainActivity extends BaseActivity
         setSupportActionBar(toolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+        toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.nav_bottom);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_camera:
+                        MainFragment firstFragment = MainFragment.newInstance();
+                        if (null != firstFragment) {
+                            addFragment(firstFragment);
+                        }
+                        break;
+                    case R.id.nav_gallery:
+                        removeFragment();
+                        break;
+                }
+                return true;
+            }
+        });
+        bottomNavigationView.setSelectedItemId(R.id.nav_camera);
     }
 
     @Override

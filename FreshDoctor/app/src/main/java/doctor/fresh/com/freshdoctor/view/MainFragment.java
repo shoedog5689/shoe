@@ -1,6 +1,7 @@
 package doctor.fresh.com.freshdoctor.view;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class MainFragment extends BaseFragment {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         textView = (TextView) view.findViewById(R.id.testTv);
+
     }
 
     @Override
