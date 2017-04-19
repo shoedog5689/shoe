@@ -3,6 +3,22 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.1"
+
+    signingConfigs {
+        release {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('./debug.keystore')
+            storePassword 'android'
+        }
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('./debug.keystore')
+            storePassword 'android'
+        }
+    }
+
     defaultConfig {
         applicationId "doctor.fresh.com.freshdoctor"
         minSdkVersion 15
@@ -10,6 +26,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
@@ -21,11 +38,19 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     compile 'com.android.support:appcompat-v7:25.3.0'
     compile 'com.android.support:design:25.3.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
+
+    //这是Retrofit的包
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    //这是Retrofit用来将得到的json转化成bean对象的包
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+
     testCompile 'junit:junit:4.12'
 }
