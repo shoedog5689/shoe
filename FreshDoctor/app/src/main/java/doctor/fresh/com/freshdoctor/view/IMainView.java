@@ -5,4 +5,5 @@ package doctor.fresh.com.freshdoctor.view;
  */
 
 public interface IMainView {
+    public void initView();
 }

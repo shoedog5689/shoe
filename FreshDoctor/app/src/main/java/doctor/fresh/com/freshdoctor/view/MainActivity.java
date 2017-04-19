@@ -20,7 +20,7 @@ import doctor.fresh.com.freshdoctor.BaseFragment;
 import doctor.fresh.com.freshdoctor.R;
 
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, IMainView {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity
             handleIntent(getIntent());
         }
 
-        initMainView();
+        initView();
 
         //避免重复添加Fragment
         Log.d(TAG, "getBackStackEntryCount():" + getFragmentManager().getBackStackEntryCount());
@@ -56,7 +56,8 @@ public class MainActivity extends BaseActivity
 
     }
 
-    private void initMainView() {
+    @Override
+    public void initView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

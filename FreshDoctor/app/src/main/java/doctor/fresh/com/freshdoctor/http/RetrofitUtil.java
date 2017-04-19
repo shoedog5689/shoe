@@ -5,10 +5,13 @@ import java.io.IOException;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.X509TrustManager;
 
+import doctor.fresh.com.freshdoctor.common.ApiConst;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by wei.he on 17/4/19.
@@ -16,7 +19,24 @@ import okhttp3.Response;
 
 public class RetrofitUtil {
 
-    public static OkHttpClient genericClient() {
+    private static Retrofit retrofit = null;
+
+    public static Retrofit getRetrofitInstance() {
+        if (retrofit == null) {
+            synchronized (RetrofitUtil.class) {
+                if (retrofit == null) {
+                    retrofit = new Retrofit.Builder()
+                            .baseUrl(ApiConst.BASE_URL)
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .client(genericClient())
+                            .build();
+                }
+            }
+        }
+        return retrofit;
+    }
+
+    private static OkHttpClient genericClient() {
         SSLSocketFactory sslSocketFactory = new SslContextFactory().getSslSocket().getSocketFactory();
         X509TrustManager x509TrustManager = new SslContextFactory().getX509TrustManager();
         OkHttpClient httpClient = new OkHttpClient.Builder()

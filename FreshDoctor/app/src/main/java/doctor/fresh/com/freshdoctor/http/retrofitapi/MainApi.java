@@ -16,7 +16,7 @@ public class MainApi {
      */
     public interface ApiService {
 
-        @GET("common/mainPage")
+        @GET("banner/list")
         Call<JSONObject> getCall();
     }
 }

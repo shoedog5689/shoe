@@ -36,18 +36,12 @@ public class MainTask {
 
     public Bitmap getMainPics() {
         Log.d(TAG, "getMainPics()");
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ApiConst.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(RetrofitUtil.genericClient())
-                .build();
-        final MainApi.ApiService apiService = retrofit.create(MainApi.ApiService.class);
+        final MainApi.ApiService apiService = RetrofitUtil.getRetrofitInstance().create(MainApi.ApiService.class);
         Call<JSONObject> call = apiService.getCall();
         call.enqueue(new Callback<JSONObject>() {
             @Override
             public void onResponse(Call<JSONObject> call, Response<JSONObject> response) {
-                Log.d(TAG, "onResponse(), call:\n" + call.toString());
-                Log.d(TAG, "onResponse(), response:\n" + response.body().toString());
+                Log.d(TAG, "onResponse(), response:\n" + response.toString());
             }
 
             @Override

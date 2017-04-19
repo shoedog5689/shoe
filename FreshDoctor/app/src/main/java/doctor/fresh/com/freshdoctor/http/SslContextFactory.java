@@ -14,6 +14,7 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLEngine;
 import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509ExtendedTrustManager;
 import javax.net.ssl.X509TrustManager;
@@ -35,14 +36,24 @@ public class SslContextFactory {
             //取得SSL的SSLContext实例
             sslContext = SSLContext.getInstance(CLIENT_AGREEMENT);
 
-            //取得TrustManagerFactory的X509密钥管理器实例
-            TrustManagerFactory trustManager = TrustManagerFactory.getInstance(CLIENT_TRUST_MANAGER);
-            //取得BKS密库实例
-            KeyStore tks = KeyStore.getInstance(CLIENT_TRUST_KEYSTORE);
-            //初始化密钥管理器
-            trustManager.init(tks);
+            TrustManager[] trustAllCerts = new TrustManager[] {new X509TrustManager() {
+                @Override
+                public void checkClientTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
+
+                }
+
+                @Override
+                public void checkServerTrusted(X509Certificate[] x509Certificates, String s) throws CertificateException {
+
+                }
+
+                @Override
+                public X509Certificate[] getAcceptedIssuers() {
+                    return new X509Certificate[0];
+                }
+            }};
             //初始化SSLContext
-            sslContext.init(null, trustManager.getTrustManagers(), new SecureRandom());
+            sslContext.init(null, trustAllCerts, new SecureRandom());
         } catch (Exception e) {
             Log.e("SslContextFactory", e.getMessage());
         }
