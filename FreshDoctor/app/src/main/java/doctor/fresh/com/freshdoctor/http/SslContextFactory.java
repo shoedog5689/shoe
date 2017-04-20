@@ -57,13 +57,6 @@ public class SslContextFactory {
         } catch (Exception e) {
             Log.e("SslContextFactory", e.getMessage());
         }
-        HttpsURLConnection.setDefaultSSLSocketFactory(sslContext.getSocketFactory());
-        HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
-            @Override
-            public boolean verify(String arg0, SSLSession arg1) {
-                return true;
-            }
-        });
         return sslContext;
     }
 

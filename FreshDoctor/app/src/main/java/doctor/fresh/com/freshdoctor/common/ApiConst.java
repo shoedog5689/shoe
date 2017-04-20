@@ -7,5 +7,5 @@ package doctor.fresh.com.freshdoctor.common;
 public class ApiConst {
     public static String BASE_URL = "https://www.pjhealth.com.cn/";
 
-    public static String MAIN_PICS = "common/mainPage";
+//    public static String MAIN_PICS = "common/mainPage";
 }

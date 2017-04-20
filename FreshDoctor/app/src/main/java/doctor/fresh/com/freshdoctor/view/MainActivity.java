@@ -20,7 +20,7 @@ import doctor.fresh.com.freshdoctor.BaseFragment;
 import doctor.fresh.com.freshdoctor.R;
 
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener, IMainView {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -56,7 +56,6 @@ public class MainActivity extends BaseActivity
 
     }
 
-    @Override
     public void initView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
