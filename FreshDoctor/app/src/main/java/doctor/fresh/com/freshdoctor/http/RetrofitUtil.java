@@ -20,7 +20,7 @@ import retrofit2.Retrofit;
 
 public class RetrofitUtil {
 
-    private static Retrofit retrofit = null;
+    private volatile static Retrofit retrofit = null;
 
     public static Retrofit getRetrofitInstance() {
         if (retrofit == null) {

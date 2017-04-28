@@ -1,19 +1,20 @@
 package doctor.fresh.com.freshdoctor.view;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.json.JSONObject;
+import java.util.List;
 
 import doctor.fresh.com.freshdoctor.BaseFragment;
 import doctor.fresh.com.freshdoctor.R;
 
-import doctor.fresh.com.freshdoctor.model.MainModel;
-import doctor.fresh.com.freshdoctor.presenter.OnBannerListListener;
+import doctor.fresh.com.freshdoctor.presenter.IMainPresenter;
 
 /**
  * Created by hewei on 2017/4/17.
@@ -25,6 +26,7 @@ public class MainFragment extends BaseFragment implements IMainView {
 
     private TextView textView;
     private ViewPager viewPager;
+    private IMainPresenter mainPresenter;
 
     public static MainFragment newInstance() {
         Log.d(TAG, "newInstance()");
@@ -33,24 +35,41 @@ public class MainFragment extends BaseFragment implements IMainView {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        Log.d(TAG, "initView()");
         textView = (TextView) view.findViewById(R.id.testTv);
         viewPager = (ViewPager) view.findViewById(R.id.main_viewpager);
-
-        MainModel.getInstance().getMainBannerList(new OnBannerListListener() {
+        mainPresenter.getImageViewList(new OnGetImageViewList() {
             @Override
-            public void onResponse(JSONObject response) {
-                Log.d(TAG, "onResponse:" + response.toString());
-            }
-
-            @Override
-            public void onFailure(String errStr) {
-                Log.d(TAG, "onFailure:" + errStr);
+            public void onComplete(List<ImageView> lst) {
+                BannerViewPager bannerViewPager = new BannerViewPager(lst);
+                viewPager.setAdapter(bannerViewPager);
             }
         });
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_main;
+    }
+
+
+    @Override
+    public void setPresenter(IMainPresenter mainPresenter) {
+        this.mainPresenter = mainPresenter;
+    }
+
+    @Override
+    public IMainPresenter getPresenter() {
+        return mainPresenter;
+    }
+
+    @Override
+    public Activity getViewActivity() {
+        return getHoldingActivity();
     }
 }

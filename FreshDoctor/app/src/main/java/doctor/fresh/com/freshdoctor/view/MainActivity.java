@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import doctor.fresh.com.freshdoctor.BaseActivity;
 import doctor.fresh.com.freshdoctor.BaseFragment;
 import doctor.fresh.com.freshdoctor.R;
+import doctor.fresh.com.freshdoctor.presenter.MainPresenter;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -29,6 +30,7 @@ public class MainActivity extends BaseActivity
     private NavigationView navigationView;
     private BottomNavigationView bottomNavigationView;
     private Toolbar toolbar;
+    private MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class MainActivity extends BaseActivity
             if (null != firstFragment) {
                 addFragment(firstFragment);
             }
+            mainPresenter = new MainPresenter(firstFragment);
         }
     }
 

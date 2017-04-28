@@ -34,7 +34,7 @@ public class MainModel implements IMainModel {
 
     @Override
     public void getMainBannerList(final OnBannerListListener onBannerListListener) {
-        Log.d(TAG, "getMainPics()");
+        Log.d(TAG, "getMainBannerList()");
         final MainApi.ApiService apiService = RetrofitUtil.getRetrofitInstance().create(MainApi.ApiService.class);
         Call<JSONObject> call = apiService.getCall();
         call.enqueue(new Callback<JSONObject>() {
