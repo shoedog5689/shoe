@@ -19,19 +19,6 @@ public class MainModel implements IMainModel {
 
     private static final String TAG = MainModel.class.getSimpleName();
 
-    private static MainModel mainModelInstance = null;
-
-    public static MainModel getInstance() {
-        if (null == mainModelInstance) {
-            synchronized (MainModel.class) {
-                if (null == mainModelInstance) {
-                    mainModelInstance = new MainModel();
-                }
-            }
-        }
-        return mainModelInstance;
-    }
-
     @Override
     public void getMainBannerList(final OnBannerListListener onBannerListListener) {
         Log.d(TAG, "getMainBannerList()");

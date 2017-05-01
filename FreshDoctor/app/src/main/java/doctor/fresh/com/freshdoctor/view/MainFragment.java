@@ -1,7 +1,6 @@
 package doctor.fresh.com.freshdoctor.view;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
@@ -36,7 +35,6 @@ public class MainFragment extends BaseFragment implements IMainView {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         Log.d(TAG, "initView()");
-        textView = (TextView) view.findViewById(R.id.testTv);
         viewPager = (ViewPager) view.findViewById(R.id.main_viewpager);
         mainPresenter.getImageViewList(new OnGetImageViewList() {
             @Override

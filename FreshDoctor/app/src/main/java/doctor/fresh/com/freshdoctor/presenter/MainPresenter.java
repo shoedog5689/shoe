@@ -1,7 +1,5 @@
 package doctor.fresh.com.freshdoctor.presenter;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -20,10 +18,7 @@ import doctor.fresh.com.freshdoctor.common.Utils;
 import doctor.fresh.com.freshdoctor.model.IMainModel;
 import doctor.fresh.com.freshdoctor.model.MainModel;
 import doctor.fresh.com.freshdoctor.view.IMainView;
-import doctor.fresh.com.freshdoctor.view.MainFragment;
 import doctor.fresh.com.freshdoctor.view.OnGetImageViewList;
-
-import static com.bumptech.glide.gifdecoder.GifHeaderParser.TAG;
 
 /**
  * Created by hewei on 2017/4/14.
