@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.login);
+        setContentView(R.layout.scroll_view_group);
 
         loginPresenter = new LoginPresenter(this);
 
@@ -45,25 +45,29 @@ public class LoginActivity extends AppCompatActivity implements ILoginView {
         passwordEt = (TextInputEditText) findViewById(R.id.password_et);
         loginBtn = (AppCompatButton) findViewById(R.id.login_btn);
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (loginPresenter != null) {
-                    loginPresenter.doLogin(new OnLoginListener() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            //Login Success
-                        }
+//        loginBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (loginPresenter != null) {
+//                    loginPresenter.doLogin(new OnLoginListener() {
+//                        @Override
+//                        public void onResponse(JSONObject response) {
+//                            //Login Success
+//                        }
+//
+//                        @Override
+//                        public void onFailure(String errStr) {
+//                            //Login Failed
+//
+//                        }
+//                    });
+//                }
+//            }
+//        });
 
-                        @Override
-                        public void onFailure(String errStr) {
-                            //Login Failed
+        ScrollViewGroup scrollViewGroup = (ScrollViewGroup) findViewById(R.id.scroll_view_group);
+        ChildView childView = (ChildView) findViewById(R.id.chile_view);
 
-                        }
-                    });
-                }
-            }
-        });
 
     }
 
