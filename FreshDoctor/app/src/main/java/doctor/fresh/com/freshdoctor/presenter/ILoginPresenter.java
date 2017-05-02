@@ -6,4 +6,5 @@ package doctor.fresh.com.freshdoctor.presenter;
 
 public interface ILoginPresenter {
     public void doLogin(OnLoginListener onLoginListener);
+    public void getVerifyCode(OnGetVerifyCode onGetVerifyCode);
 }

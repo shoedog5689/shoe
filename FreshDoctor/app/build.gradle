@@ -55,5 +55,7 @@ dependencies {
     //这是Retrofit用来将得到的json转化成bean对象的包
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 
+    compile 'commons-codec:commons-codec:20041127.091804'
+
     testCompile 'junit:junit:4.12'
 }

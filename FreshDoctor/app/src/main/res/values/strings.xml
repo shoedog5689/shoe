@@ -6,5 +6,8 @@
 
     <string name="action_settings">Settings</string>
 
-    //
+    //Login String
+    <string name="login_user_name_phone_number">请输入手机号</string>
+    <string name="login_password">请输入验证码</string>
+    <string name="login_send_verify_code">发送验证码</string>
 </resources>

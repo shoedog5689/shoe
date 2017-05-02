@@ -1,5 +1,6 @@
 package doctor.fresh.com.freshdoctor.model;
 
+import doctor.fresh.com.freshdoctor.presenter.OnGetVerifyCode;
 import doctor.fresh.com.freshdoctor.presenter.OnLoginListener;
 
 /**
@@ -8,4 +9,5 @@ import doctor.fresh.com.freshdoctor.presenter.OnLoginListener;
 
 public interface ILoginModel {
     public void doLogin(OnLoginListener onLoginListener);
+    public void getVerifyCode(String phoneNum, OnGetVerifyCode onGetVerifyCode);
 }

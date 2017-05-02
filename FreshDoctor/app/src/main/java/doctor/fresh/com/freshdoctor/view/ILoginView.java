@@ -12,4 +12,7 @@ public interface ILoginView {
     public void setPresenter(ILoginPresenter loginPresenter);
     public ILoginPresenter getPresenter();
     public Activity getViewActivity();
+
+    public String getVerifyCode();
+    public String getPhoneNum();
 }
